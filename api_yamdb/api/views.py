@@ -13,8 +13,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from reviews.models import Category, Genre, Review, Title
 from users.models import User
 
-from .permissions import AuthorModeratorOrReadOnly, \
-    IsAdminOrSuperUser, IsAdminOrReadOnly
+from .permissions import (AuthorModeratorOrReadOnly,
+                          IsAdminOrSuperUser,
+                          IsAdminOrReadOnly)
 from .serializers import (CategorySerializer, CommentSerializer,
                           GenreSerializer, ReviewSerializer,
                           SelfUserSerializer, TitleSerializer,
@@ -186,7 +187,8 @@ class TitleViewSet(viewsets.ModelViewSet):
             return Title.objects.select_related(
                 'category').prefetch_related(
                 'genre').annotate(rating=Avg(
-                'reviews__score'))
+                'reviews__score')
+                )
         return Title.objects.select_related(
             'category').prefetch_related('genre')
 
