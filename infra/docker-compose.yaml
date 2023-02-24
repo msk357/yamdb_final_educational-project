@@ -9,7 +9,7 @@ services:
       - ./.env
 
   web:
-    image: msk357/api_yamdb:latest
+    image: msk357/sprint16:v1
     restart: always
     volumes:
       - static_value:/app/static/
