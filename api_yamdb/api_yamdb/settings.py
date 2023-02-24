@@ -8,17 +8,13 @@ load_dotenv()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Указываем путь к файлу .env
-# ENV_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__name__))))
-# env_path = os.path.join("/app/infra/.env")
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', default='p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default=['*'])
 
 
 # Application definition
@@ -50,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = os.getenv('ROOT_URLCONF')
+ROOT_URLCONF = os.getenv('ROOT_URLCONF', default='api_yamdb.urls')
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 TEMPLATES = [
@@ -69,13 +65,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = os.getenv('WSGI_APPLICATION')
+WSGI_APPLICATION = os.getenv('WSGI_APPLICATION', default='api_yamdb.wsgi.application')
 
 # Database
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
+        'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
