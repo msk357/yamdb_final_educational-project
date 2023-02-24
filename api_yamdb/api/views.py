@@ -187,8 +187,7 @@ class TitleViewSet(viewsets.ModelViewSet):
             return Title.objects.select_related(
                 'category').prefetch_related(
                 'genre').annotate(rating=Avg(
-                'reviews__score')
-                )
+                'reviews__score'))
         return Title.objects.select_related(
             'category').prefetch_related('genre')
 
