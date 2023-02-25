@@ -32,6 +32,7 @@ jobs:
       name: Push Docker image to Docker Hub
       runs-on: ubuntu-latest
       needs: tests
+
       steps:
         - name: Check out the repo
           # Проверка доступности репозитория Docker Hub для workflow
@@ -50,6 +51,7 @@ jobs:
             push: true
             tags: msk357/sprint16:latest
             file: api_yamdb/Dockerfile
+
   deploy:
       runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
@@ -76,6 +78,7 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
+
     steps:
     - name: send message
       uses: appleboy/telegram-action@master
