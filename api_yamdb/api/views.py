@@ -184,8 +184,8 @@ class TitleViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.action in ('retrieve', 'list'):
-            return Title.objects.select_related('category')\
-                .prefetch_related('genre')\
+            return Title.objects.select_related('category') \
+                .prefetch_related('genre') \
                 .annotate(rating=Avg('reviews__score'))
         return Title.objects.select_related(
             'category').prefetch_related('genre')
